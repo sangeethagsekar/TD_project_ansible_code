@@ -1,0 +1,31 @@
+---
+- name: Ensure NGINX package is installed
+  package:
+    name: nginx
+    state: present
+  notify: Restart Nginx
+  tags: [install]
+
+- name: Ensure doc root exists
+  file:
+    path: "{{ doc_root }}"
+    state: directory
+    recurse: yes
+  tags: [config]
+
+- name: Deploy index.html from template
+  template:
+    src: index.html.j2
+    dest: "{{ index_path }}"
+    mode: '0644'
+  notify: Restart Nginx
+  tags: [config]
+
+- name: Optionally write API key to a separate file
+  copy:
+    content: "{{ api_key }}\n"
+    dest: "{{ api_file_path }}"
+    owner: root
+    mode: '0600'
+  when: api_to_file | bool
+  tags: [config]

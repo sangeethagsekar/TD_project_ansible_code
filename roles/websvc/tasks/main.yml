@@ -1,0 +1,8 @@
+---
+- name: Include OS specific tasks
+  include_tasks: "linux.yml"
+  when: websvc_backend == 'nginx'
+
+- name: Include Windows tasks
+  include_tasks: "windows.yml"
+  when: websvc_backend == 'iis'

@@ -1,0 +1,4 @@
+---
+env_name: prod
+listen_port: 80
+api_to_file: false

@@ -1,0 +1,4 @@
+---
+env_name: dev
+listen_port: 8080
+api_to_file: false

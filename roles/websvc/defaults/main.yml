@@ -1,0 +1,10 @@
+---
+websvc_backend: nginx
+listen_port: 8080
+doc_root: /usr/share/nginx/html
+index_path: "{{ doc_root }}/index.html"
+api_to_file: false
+api_file_path: "/etc/websvc_api_key"
+site_name: "AnsibleWebSvc"
+app_pool_name: "AnsibleAppPool"
+app_pool_identity: "{{ ansible_user | default('ApplicationPoolIdentity') }}"

@@ -1,0 +1,16 @@
+---
+- name: Ensure Web-Server feature is installed
+  win_feature:
+    name: Web-Server
+    state: present
+  tags: [install]
+
+- name: Ensure application pool exists
+  win_iis_webapppool:
+    name: "{{ app_pool_name }}"
+    state: started
+    managed_pipeline_mode: Integrated
+    identity: SpecificUser
+    user_name: "{{ ansible_user }}"
+    password: "{{ iis_pool_password }}"
+  tags: [config]

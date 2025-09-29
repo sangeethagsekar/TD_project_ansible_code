@@ -1,0 +1,2 @@
+# use ansible-vault encrypt_string 'secret' --name 'api_key'
+api_key: 'VAULT_ENCRYPTED_API_KEY_PLACEHOLDER'

@@ -1,0 +1,19 @@
+---
+- name: Deploy Linux web service (Nginx)
+  hosts: linux_web
+  become: yes
+  roles:
+    - role: websvc
+  vars_files:
+    - "group_vars/{{ env }}/vars.yml"
+    - "group_vars/{{ env }}/vault.yml"
+  tags: [linux]
+
+- name: Deploy Windows web service (IIS)
+  hosts: windows_web
+  roles:
+    - role: websvc
+  vars_files:
+    - "group_vars/{{ env }}/vars.yml"
+    - "group_vars/{{ env }}/vault.yml"
+  tags: [windows]

@@ -1,0 +1,11 @@
+---
+- name: Deploy IIS web site (Windows)
+  hosts: windows_web
+  gather_facts: yes
+  vars_files:
+    - "group_vars/{{ env }}/vault.yml"
+  roles:
+    - role: websvc
+      vars:
+        websvc_backend: iis
+  tags: ["install","config","firewall"]

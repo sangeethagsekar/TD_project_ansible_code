@@ -1,0 +1,12 @@
+---
+- name: Restart Nginx
+  service:
+    name: nginx
+    state: restarted
+  when: websvc_backend == 'nginx'
+
+- name: Restart IIS Site
+  win_iis_website:
+    name: "{{ site_name }}"
+    state: restarted
+  when: websvc_backend == 'iis'

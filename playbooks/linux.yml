@@ -1,0 +1,11 @@
+---
+- name: Deploy Nginx web page (Linux)
+  hosts: linux_web
+  become: true
+  vars_files:
+    - "group_vars/{{ env }}/vault.yml"
+  roles:
+    - role: websvc
+      vars:
+        websvc_backend: nginx
+  tags: ["install","config","firewall"]
